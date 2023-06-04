@@ -2,55 +2,96 @@ from pathlib import Path, PurePath
 import pandas as pd
 import numpy as np
 import cv2
-import re
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
 import streamlit as st
+import random
 
 ###
 # Chargement des données
 ###
 
-datasets = ["PBC", "APL"]
+datasets = ["PBC", "APL", "Munich"]
 dataset = st.sidebar.selectbox("Choose a dataset", datasets)
 
 
-base_image = Image.open("data/Images/Hematopoiesis.png")
-st.image(base_image)
-"""
-Author : By Original: A. Rad Vector: RexxS, Mikael Häggström and birdy and Mikael Häggström, M.D. Author info- Reusing images- Conflicts of interest:NoneMikael Häggström, M.D. - Own work based on: Hematopoiesis (human) diagram.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=9420824
-"""
-
-if dataset == "PBC":
-    boxes = {'boxes' : [[0,0,100,100],[10,20,50,150]]}
+# base_image = Image.open("data/Images/Hematopoiesis.png")
+# st.image(base_image)
+# """
+# Author : By Original: A. Rad Vector: RexxS, Mikael Häggström and birdy and Mikael Häggström, M.D. Author info- Reusing images- Conflicts of interest:NoneMikael Häggström, M.D. - Own work based on: Hematopoiesis (human) diagram.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=9420824
+# """
 
 if dataset == "PBC":
     df = pd.read_csv('data/Tables/PBC.csv')
 elif dataset == "APL":
     df = pd.read_csv('data/Tables/APL.csv')
+elif dataset =="Munich":
+    df = pd.read_csv('data/Tables/Munich.csv')
 
-###
-# Hematopoïesis image
-###
-
-
-
-
+# elimination du file path et Photo_id
+df = df.drop(['Photo_path',"Photo_id","Patient_ID"], axis=1, errors='ignore')
 
 ###
 #Data sélection
 ###
-
-
-
+continu = df.select_dtypes('number').columns
+discrete = df.select_dtypes('object').columns
+#varaibles_selected = st.selectbox("Choose variables :", variables)
+col1, col2 = st.columns(2)
 
 ###
-# Display graphs
+#Display graphs
 ###
 
-# basic graph
-fig = plt.figure()
-sns.countplot(y="Cell_type", data=df)
+with col1: 
+    discrete_selected = st.selectbox("Choisir une variable discrète", discrete)
 
-st.pyplot(fig)
+    fig = plt.figure()
+    sns.countplot(y=discrete_selected, data=df)
+    st.pyplot(fig)
+
+with col2:
+    continu_selected = st.selectbox("Choisur une variable continue :", continu)
+
+    fig = plt.figure()
+    sns.histplot(data=df, x=continu_selected)
+    st.pyplot(fig)
+
+"""
+#### Echantillon d'images
+"""
+
+def sample_display(dataset, figsize=(20, 6)):
+    dataset_path = Path('data/Sample/' + str(dataset))
+
+    Cell_types = [d.parts[-1] for d in dataset_path.glob('*') if d.is_dir()]
+
+    fig, axs = plt.subplots(2, len(Cell_types), figsize=figsize, sharey='row')
+
+    for j, cell_type in enumerate(Cell_types):
+        image = random.choice([i.parts[-1] for i in Path(dataset_path/cell_type).glob('*.jpg') if i.is_file()])
+        image_path = Path(dataset_path/cell_type/image)
+
+        img = plt.imread(image_path)
+        axs[0][j].imshow(img)
+        axs[0][j].set_title(cell_type)
+
+        
+
+        colors = ['red', 'green', 'blue']
+        for i, col in enumerate(colors):
+            histr = cv2.calcHist([img],[i],None,[256],[0,256])
+            axs[1][j].plot(histr, color = col)
+
+    
+    return fig
+
+if st.button("Générer"):
+    st.pyplot(sample_display(dataset=dataset))
+else:
+    st.pyplot(sample_display(dataset=dataset))
+
+
+
+

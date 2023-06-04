@@ -3,22 +3,20 @@ from PIL import Image
 import os
 from importlib import reload
 
-st.title("BloodCellsApp : une application de visualisation et de classification de cellules sanguines")
-
 st.markdown("""
-## Contexte
-La leucémie est un type de cancer du sang se caractérisant par une production anormale\n de cellule sanguine nommées leucocyte. L’émergence de l’intelligence artificielle dans le\n domaine de la médecine apport de nouveaux outils d’analyse facilitant grandement les\n diagnostiques.
- """)
+# BloodCellsApp : une application de visualisation et de classification de cellules sanguines
 
-st.title('Bloodcell Prediction version 352.4')
-st.header('Nicolas ORIEUX, Jean-Robert PHILIPPE & Florian FREYTET')
+## Contexte
+La leucémie est un type de cancer du sang qui se caractérise par une production anormale de cellules sanguines, généralement des leucocytes, dans la moelle osseuse. Il existe plusieurs types de leucémies, dont les quatre les plus fréquentes sont la leucémie aiguë lymphoblastique (LAL), la leucémie aiguë myéloblastique (LAM), la leucémie lymphoïde chronique (LLC) et la leucémie myéloïde chronique (LMC). Les analyses de l'hémogramme permettent d'identifier des indices pouvant faire soupçonner la présence d'une leucémie.
+
+L’émergence de l’intelligence artificielle dans le domaine de la médecine apporte de nouveaux outils d’analyse facilitant grandement les diagnostiques.
+ """)
 
 images_folder_path = r'data/Images'
 image_path = os.path.join(images_folder_path, 'intro.jpg')
 image = Image.open(image_path)
 #st.image(image, use_column_width=True)
 
-st.text(' La leucémie est un type de cancer du sang se caractérisant par une production anormale\n de cellule sanguine nommées leucocyte. L’émergence de l’intelligence artificielle dans le\n domaine de la médecine apport de nouveaux outils d’analyse facilitant grandement les\n diagnostiques.')
 
 st.markdown("""
     ## Datasets
