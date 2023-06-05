@@ -21,6 +21,10 @@ image = Image.open(image_path)
 st.markdown("""
     ## Datasets
 
+    #### Objectif
+
+    Développer des modèles de deep-learning caractérisant différents types de leucocytes ainsi que de la segmentation sémantique permettant de recueillir des informations supplémentaires sur les cellules d’interets (taille, nombre …)
+
     #### 1. PBC dataset
 
     A publicly available [dataset](https://data.mendeley.com/datasets/snkd93bnjr/draft?a=d9582c71-9af0-4e59-9062-df30df05a121) of more than 
@@ -48,8 +52,8 @@ st.markdown("""
     |band neutrophils|        BNE|X| |X|
     |platelets|               PLT|X| | |
     |erythroblasts|           ERB|X| |X|
+    |smudges cell|           SMG| |X| |
 
-    </br>
     </br>
 
     <a name="footnote1">1.</a> *A dataset of microscopic peripheral blood cell images for development of automatic recognition systems. [Data Brief. 2020 Jun; 30: 105474.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7182702/)*
