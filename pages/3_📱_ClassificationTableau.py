@@ -21,8 +21,18 @@ VGG16_8.compile(optimizer=tf.optimizers.Adam(learning_rate=0.00001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-VGG16_11 = tf.keras.models.load_model("data/Models/VGG16_pt_11cat_4layers.h5", compile=False)
+VGG16_11 = tf.keras.models.load_model("data/Models/VGG16_pt_11cat_wh_aug_masked.h5", compile=False)
 VGG16_11.compile(optimizer=tf.optimizers.Adam(learning_rate=0.00001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+VGG19_6 = tf.keras.models.load_model("data/Models/VGG19_pt_6cat_4layers.h5", compile=False)
+VGG19_6.compile(optimizer=tf.optimizers.Adam(learning_rate=0.00001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+VGG19_11 = tf.keras.models.load_model("data/Models/VGG19_pt_11cat_4layers.h5", compile=False)
+VGG19_11.compile(optimizer=tf.optimizers.Adam(learning_rate=0.00001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
@@ -75,7 +85,7 @@ if uploaded_file is not None:
             st.image(masked)
             
     if prediction:
-        options= st.multiselect('Choice model:',['VGG16_6', 'VGG16_8', 'VGG16_11'])
+        options= st.multiselect('Choice model:',['VGG16_6', 'VGG16_8', 'VGG16_11','VGG19_6', 'VGG19_11'])
         result_table = []
         masked_norm = masked/255
         img_tens = tf.constant(masked_norm)
@@ -101,20 +111,25 @@ if uploaded_file is not None:
             pred_label = class_names_11[pred[0]]
             pred_score = predictions[0][pred[0]]
             result_table.append(['VGG16_11', pred_label, round(pred_score * 100, 2)])
-          
-            result_table = pd.DataFrame(result_table, columns=['Modèle', 'Prédiction', 'Score']) 
-            
-            # Cacher l'index des lignes d'apres documentation
-            
-            hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
-            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+        if 'VGG19_6' in options:
+            predictions = VGG19_6.predict(img_tens)
+            pred = np.argmax(predictions, axis=1)
+            pred_label = class_names_6[pred[0]]
+            pred_score = predictions[0][pred[0]]
+            result_table.append(['VGG19_6', pred_label, round(pred_score * 100, 2)])
+        
+        if 'VGG19_11' in options:
+            predictions = VGG19_11.predict(img_tens)
+            pred = np.argmax(predictions, axis=1)
+            pred_label = class_names_11[pred[0]]
+            pred_score = predictions[0][pred[0]]
+            result_table.append(['VGG19_11', pred_label, round(pred_score * 100, 2)])
+
+
+        result_table = pd.DataFrame(result_table, columns=['Modèle', 'Prédiction', 'Score'])
             
             # Afficher tableau
           
-            st.markdown("Résultats")
-            st.dataframe(result_table)
+        st.markdown("Résultats")
+        st.dataframe(result_table)

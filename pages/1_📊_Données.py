@@ -92,6 +92,14 @@ if st.button("Générer"):
 else:
     st.pyplot(sample_display(dataset=dataset))
 
-
+# if dataset == "PBC":
+#     image = Image.open('/data/Images/PBC_11classes.jpg')
+#     st.image(image, use_column_width=True)
+# elif dataset == "APL":
+#     image = Image.open('/data/Images/APL_dataset.jpg')
+#     st.image(image, use_column_width=True)
+# elif dataset =="Munich":
+#     image = Image.open('/data/Images/Munich_dataset.jpg')
+#     st.image(image, use_column_width=True)
 
 
