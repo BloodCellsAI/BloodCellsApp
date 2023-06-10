@@ -15,12 +15,15 @@ import random
 datasets = ["PBC", "APL", "Munich"]
 dataset = st.sidebar.selectbox("Choose a dataset", datasets)
 
+if dataset == "PBC":
+    image = Image.open("data/Images/PBC_8classes.jpg")
+elif dataset == 'APL':
+    image = Image.open("data/Images/APL_dataset.jpg")
+elif dataset =="Munich":
+    image = Image.open("data/Images/Munich_dataset.jpg")
+st.image(image, use_column_width=True)
 
-# base_image = Image.open("data/Images/Hematopoiesis.png")
-# st.image(base_image)
-# """
-# Author : By Original: A. Rad Vector: RexxS, Mikael Häggström and birdy and Mikael Häggström, M.D. Author info- Reusing images- Conflicts of interest:NoneMikael Häggström, M.D. - Own work based on: Hematopoiesis (human) diagram.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=9420824
-# """
+st.markdown("Image source[^1]")
 
 if dataset == "PBC":
     df = pd.read_csv('data/Tables/PBC.csv')
@@ -70,7 +73,10 @@ def sample_display(dataset, figsize=(20, 6)):
     fig, axs = plt.subplots(2, len(Cell_types), figsize=figsize, sharey='row')
 
     for j, cell_type in enumerate(Cell_types):
-        image = random.choice([i.parts[-1] for i in Path(dataset_path/cell_type).glob('*.jpg') if i.is_file()])
+        if dataset in ['PBC']:
+            image = random.choice([i.parts[-1] for i in Path(dataset_path/cell_type).glob('*.jpg') if i.is_file()])
+        if dataset in ['APL', 'Munich']:
+            image = random.choice([i.parts[-1] for i in Path(dataset_path/cell_type).glob('*.png') if i.is_file()])
         image_path = Path(dataset_path/cell_type/image)
 
         img = plt.imread(image_path)
@@ -89,17 +95,11 @@ def sample_display(dataset, figsize=(20, 6)):
 
 if st.button("Générer"):
     st.pyplot(sample_display(dataset=dataset))
-else:
-    st.pyplot(sample_display(dataset=dataset))
-
-# if dataset == "PBC":
-#     image = Image.open('/data/Images/PBC_11classes.jpg')
-#     st.image(image, use_column_width=True)
-# elif dataset == "APL":
-#     image = Image.open('/data/Images/APL_dataset.jpg')
-#     st.image(image, use_column_width=True)
-# elif dataset =="Munich":
-#     image = Image.open('/data/Images/Munich_dataset.jpg')
-#     st.image(image, use_column_width=True)
+#else:
+    #st.pyplot(sample_display(dataset=dataset))
 
 
+
+st.markdown("""
+[^1]Author : By Original: A. Rad Vector: RexxS, Mikael Häggström and birdy and Mikael Häggström, M.D. Author info- Reusing images- Conflicts of interest:NoneMikael Häggström, M.D. - Own work based on: Hematopoiesis (human) diagram.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=9420824
+""")

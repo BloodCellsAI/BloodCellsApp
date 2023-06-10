@@ -41,19 +41,19 @@ st.markdown("""
     A publicly available........ JR ?????
     
 
-      |Cell type| Cell Code|PBC|APL|Munich|
+    Cell type| Cell Code|PBC|APL|Munich|
     |---------|----|---------|------|------|
-    |neutrophils (segmented)| SNE|X| |X|
+    |neutrophils (segmented)| SNE|X|X|X|
     |eosinophils|              EO|X|X|X|
     |basophils|                BA|X|X|X|
     |lymphocytes|              LY|X|X|X|
     |monocytes|                MO|X|X|X|
-    |metamyelocytes|          MMY|X| |X|
-    |myelocytes|               MY|X| |X|
-    |promyelocytes|           PMY|X| |X|
-    |band neutrophils|        BNE|X| |X|
+    |metamyelocytes|          MMY|X|X|X|
+    |myelocytes|               MY|X|X|X|
+    |promyelocytes|           PMY|X|X|X|
+    |band neutrophils|        BNE|X|X|X|
     |platelets|               PLT|X| | |
-    |erythroblasts|           ERB|X| |X|
+    |erythroblasts|           ERB|X|X|X|
     |smudges cell|           SMG| |X| |
 
     </br>

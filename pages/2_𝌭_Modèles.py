@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-from st_aggrid import AgGrid
 
 
 excel_path = Path("data/Tables/Models.xlsx")
