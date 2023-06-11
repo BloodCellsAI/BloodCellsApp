@@ -79,7 +79,8 @@ def sample_display(dataset, figsize=(20, 6)):
             image = random.choice([i.parts[-1] for i in Path(dataset_path/cell_type).glob('*.png') if i.is_file()])
         image_path = Path(dataset_path/cell_type/image)
 
-        img = plt.imread(image_path)
+        img = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         axs[0][j].imshow(img)
         axs[0][j].set_title(cell_type)
 
