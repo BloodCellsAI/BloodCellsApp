@@ -37,24 +37,27 @@ st.markdown("""
     #### 3. Munich dataset
     A publicly available [dataset](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958). contains 18,365 expert-labeled single-cell images taken from peripheral blood smears of 100 patients diagnosed with Acute Myeloid Leukemia at Munich University Hospital between 2014 and 2017, as well as 100 patients without signs of hematological malignancy.<sup>[3](#footnote3)</sup>    
 
-    #### 4. Raabin dataset
-    A publicly available........ JR ?????
+    #### 4. Crema dataset
+    A publicly available [dataset](http://www.dti.unimi.it/fscotti/all/). It contains 260 images and the 50% of these represent lymphoblasts et 50% of these are non blast. <sup>[4](#footnote4)</sup>
     
+    #### 5. Raabin dataset
+    A publicly available [dataset](https://raabindata.com/free-data/). It contains about 40 000 images of white blood cells of 5 class with 1 145 of cleaned images and well identified. 
 
-    Cell type| Cell Code|PBC|APL|Munich|
-    |---------|----|---------|------|------|
-    |neutrophils (segmented)| SNE|X|X|X|
-    |eosinophils|              EO|X|X|X|
-    |basophils|                BA|X|X|X|
-    |lymphocytes|              LY|X|X|X|
-    |monocytes|                MO|X|X|X|
-    |metamyelocytes|          MMY|X|X|X|
-    |myelocytes|               MY|X|X|X|
-    |promyelocytes|           PMY|X|X|X|
-    |band neutrophils|        BNE|X|X|X|
-    |platelets|               PLT|X| | |
-    |erythroblasts|           ERB|X|X|X|
-    |smudges cell|           SMG| |X| |
+
+    Cell type| Cell Code|PBC|APL|Munich|Raabin|
+    |---------|----|---------|------|------|------|
+    |neutrophils (segmented)| SNE|X|X|X|X|
+    |eosinophils|              EO|X|X|X|X|
+    |basophils|                BA|X|X|X|X|
+    |lymphocytes|              LY|X|X|X|X|
+    |monocytes|                MO|X|X|X|X|
+    |metamyelocytes|          MMY|X|X|X||
+    |myelocytes|               MY|X|X|X||
+    |promyelocytes|           PMY|X|X|X||
+    |band neutrophils|        BNE|X|X|X||
+    |platelets|               PLT|X| | ||
+    |erythroblasts|           ERB|X|X|X||
+    |smudges cell|           SMG| |X| ||
 
     </br>
 
@@ -63,5 +66,9 @@ st.markdown("""
     <a name="footnote2">2.</a> *Deep learning for diagnosis of acute promyelocytic leukemia via recognition of genomically imprinted morphologic features. [npj Precis. Onc. 5, 38 (2021)](https://www.nature.com/articles/s41698-021-00179-y#citeas)*
  
     <a name="footnote3">3.</a> *Human-level recognition of blast cells in acute myeloid leukaemia with convolutional neural networks. [Nat Mach Intell 1, 538–544 (2019)](https://www.nature.com/articles/s42256-019-0101-9#citeas)*
+
+    <a name="footnote4">4.</a> *ALL-IDB: THE ACUTE LYMPHOBLASTIC LEUKEMIA IMAGE DATABASE FOR IMAGE PROCESSING. [](https://piurilabs.di.unimi.it/Papers/icip_2011.pdf)*
+
+    <a name="footnote5">5.</a> *A large dataset of white blood cells containing cell locations and types, along with segmented nuclei and cytoplasm. [Nat scientific reports, (2022) 12:1123](https://raabindata.com/wp-content/uploads/2022/01/A-large-dataset-of-white-blood-cells-containing-cell-locations-and-types-along-with-segmented-nuclei-and-cytoplasm.pdf)*
 
     """, unsafe_allow_html=True)

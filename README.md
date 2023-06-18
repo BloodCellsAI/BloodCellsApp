@@ -8,8 +8,12 @@ dependencies:
 
 tensorflow >= 2.12
 
+pytorch 
+
 numpy
 
 matplotlib
 
 opencv
+
+skimage

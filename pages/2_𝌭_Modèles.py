@@ -12,7 +12,7 @@ df = pd.read_excel(excel_path, sheet_name="Models", header=0, keep_default_na=Fa
 gb = GridOptionsBuilder.from_dataframe(df)
 #gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 #gb.configure_side_bar() #Add a sidebar
-gb.configure_selection('single', use_checkbox=True) #Enable row selection
+gb.configure_selection('single', use_checkbox=True, pre_selected_rows=[0]) #Enable row selection
 gridOptions = gb.build()
 
 grid_response = AgGrid(
