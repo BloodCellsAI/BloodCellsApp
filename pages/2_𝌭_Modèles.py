@@ -3,9 +3,12 @@ import pandas as pd
 from pathlib import Path
 from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
 
+# Load data
 excel_path = Path("data/Tables/Models.xlsx")
 df = pd.read_excel(excel_path, sheet_name="Models", header=0, keep_default_na=False, decimal=',')
 
+
+# Define AgGrid options
 gb = GridOptionsBuilder.from_dataframe(df)
 #gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 #gb.configure_side_bar() #Add a sidebar
@@ -19,16 +22,13 @@ grid_response = AgGrid(
     update_mode='MODEL_CHANGED', 
     fit_columns_on_grid_load=True,
     enable_enterprise_modules=False,
-    height=350, 
+    height=450, 
     width='100%',
     reload_data=True
 )
 
+# Selected boxes
 selected = grid_response['selected_rows'][0]
-
-#selected_row = AgGrid(df, gridOptions=gridOptions, height=300)
-
-st.text(selected)
 
 Modèle = selected['Modèle']
 Mask = selected['Mask']
@@ -37,24 +37,34 @@ Pretrain = selected['Pretrain']
 Fine_tuning = selected['Fine-tunning']
 Train = selected['Train']
 
-Filename = str(Modèle + '_' + Mask + '_' + Augmentation + '_')
 
-st.text(Filename)
+###
+# Display images
+###
+if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="4_Layers" and Train=="PBC_6cat") : 
+    st.image("data/Images/VGG16_6cat_matrice.jpg")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG16_6cat_lr.jpg")
+    with col2:
+        st.image("data/Images/VGG16_6cat_resume.jpg")
 
+if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="N" and Train=="PBC_6cat") : 
+    pass
 
+if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="N" and Train=="PBC_8cat") : 
+    st.image("data/Images/VGG16_8cat_matrice.jpg")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG16_8cat_lr.jpg")
+    with col2:
+        st.image("data/Images/VGG16_8cat_resume.jpg")
 
-
-
-
-
-
-
-#AgGrid(excel)
-
-
-#st.dataframe(excel)
-#st.write(excel.to_html(), unsafe_allow_html=True)
-
-#selection = st.table(excel)
-
+if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="4_Layers" and Train=="PBC_11cat") : 
+    st.image("data/Images/VGG16_11cat_matrice.jpg")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG16_11cat_lr.jpg")
+    with col2:
+        st.image("data/Images/VGG16_11cat_resume.jpg")
 
