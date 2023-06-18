@@ -50,7 +50,12 @@ if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Im
         st.image("data/Images/VGG16_6cat_resume.jpg")
 
 if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="N" and Train=="PBC_6cat") : 
-    pass
+    st.image("data/Images/VGG16_6cat_NFT_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG16_6cat_NFT_lr.png")
+    with col2:
+        st.image("data/Images/VGG16_6cat_NFT_resume.png")
 
 if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="N" and Train=="PBC_8cat") : 
     st.image("data/Images/VGG16_8cat_matrice.jpg")
@@ -68,3 +73,45 @@ if (Modèle == 'VGG16' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Im
     with col2:
         st.image("data/Images/VGG16_11cat_resume.jpg")
 
+if (Modèle == 'VGG19' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="4_Layers" and Train=="PBC_11cat") : 
+    st.image("data/Images/VGG19_11cat_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG19_11cat_lr.png")
+    with col2:
+        st.image("data/Images/VGG19_11cat_resume.png")
+
+if (Modèle == 'VGG19' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="Imagenet" and Fine_tuning=="4_Layers" and Train=="PBC_6cat") : 
+    st.image("data/Images/VGG19_6cat_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/VGG19_6cat_lr.png")
+    with col2:
+        st.image("data/Images/VGG19_6cat_resume.png")
+
+
+
+
+if (Modèle == 'Le_Net' and Mask == 'Y' and Augmentation == 'Y' and Pretrain=="N" and Fine_tuning=="N" and Train=="PBC_6cat") : 
+    st.image("data/Images/LeNET_6cat_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/LeNET_6cat_Lr.png")
+    with col2:
+        st.image("data/Images/LeNET_6cat_resume.png")
+
+if (Modèle == 'CNN_3L' and Mask == 'N' and Augmentation == 'N' and Pretrain=="N" and Fine_tuning=="N" and Train=="PBC_11cat") : 
+    st.image("data/Images/CNN3L_11cat_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/CNN3L_11cat_lr.png")
+    with col2:
+        st.image("data/Images/CNN3L_11cat_resume.png")
+
+if (Modèle == 'CNN_3L' and Mask == 'N' and Augmentation == 'N' and Pretrain=="N" and Fine_tuning=="N" and Train=="PBC_6cat") : 
+    st.image("data/Images/CNN3L_6cat_matrice.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("data/Images/CNN3L_6cat_Lr.png")
+    with col2:
+        st.image("data/Images/CNN3L_6cat_resume.png")
